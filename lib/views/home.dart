@@ -69,6 +69,8 @@ class _HomePageState extends State<HomePage> {
                               images: _recipes[index].images,
                               description: _recipes[index].description,
                               videoUrl: _recipes[index].videoUrl,
+                              instructions: _recipes[index].instructions,
+                              sections: _recipes[index].sections,
                             ),
                           )),
                     },
