@@ -52,10 +52,12 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     child: RecipeCard(
-                        title: _recipes[index].name,
-                        cookTime: _recipes[index].totalTime,
-                        rating: _recipes[index].rating.toString(),
-                        thumbnailUrl: _recipes[index].images),
+                      title: _recipes[index].name,
+                      cookTime: _recipes[index].totalTime,
+                      rating: _recipes[index].rating.toString(),
+                      thumbnailUrl: _recipes[index].images,
+                      videoUrl: _recipes[index].videoUrl,
+                    ),
                     onTap: () => {
                       Navigator.push(
                           context,
@@ -66,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                               rating: _recipes[index].rating.toString(),
                               images: _recipes[index].images,
                               description: _recipes[index].description,
+                              videoUrl: _recipes[index].videoUrl,
                             ),
                           )),
                     },

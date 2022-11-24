@@ -7,9 +7,15 @@ class DetailRecipe extends StatelessWidget {
   final String rating;
   final String totalTime;
   final String description;
+  final String videoUrl;
 
   DetailRecipe(
-      {this.name, this.images, this.rating, this.totalTime, this.description});
+      {this.name,
+      this.images,
+      this.rating,
+      this.totalTime,
+      this.description,
+      this.videoUrl});
 
   @override
   Widget build(BuildContext context) {
