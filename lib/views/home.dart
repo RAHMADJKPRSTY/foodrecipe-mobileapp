@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe/models/recipe.api.dart';
 import 'package:food_recipe/models/recipe.dart';
+import 'package:food_recipe/views/detail_recipe.dart';
 import 'package:food_recipe/views/widgets/recipe_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,17 +30,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.menu_book),
+              Icon(
+                Icons.menu_book,
+                color: Colors.white,
+              ),
               SizedBox(width: 10),
-              Text('Buku Resep Makanan',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ))
+              Text('Buku Resep Makanan', style: TextStyle(color: Colors.white))
             ],
           ),
         ),
@@ -48,11 +50,26 @@ class _HomePageState extends State<HomePage> {
             : ListView.builder(
                 itemCount: _recipes.length,
                 itemBuilder: (context, index) {
-                  return RecipeCard(
-                      title: _recipes[index].name,
-                      cookTime: _recipes[index].totalTime,
-                      rating: _recipes[index].rating.toString(),
-                      thumbnailUrl: _recipes[index].images);
+                  return GestureDetector(
+                    child: RecipeCard(
+                        title: _recipes[index].name,
+                        cookTime: _recipes[index].totalTime,
+                        rating: _recipes[index].rating.toString(),
+                        thumbnailUrl: _recipes[index].images),
+                    onTap: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailRecipe(
+                              name: _recipes[index].name,
+                              totalTime: _recipes[index].totalTime,
+                              rating: _recipes[index].rating.toString(),
+                              images: _recipes[index].images,
+                              description: _recipes[index].description,
+                            ),
+                          )),
+                    },
+                  );
                 },
               ));
   }
